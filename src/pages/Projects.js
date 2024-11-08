@@ -1,10 +1,13 @@
 import React from 'react';
+import PageTransition from "../components/PageTransition";
 
 const Projects = () => {
   return (
-    <div>
-      <h1>Projects</h1>
-    </div>
+    <PageTransition>
+      <div>
+        <h1>Projects</h1>
+      </div>
+    </PageTransition>
   )
 }
 
