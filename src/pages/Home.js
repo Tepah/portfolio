@@ -1,24 +1,20 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import PageTransition from "../components/PageTransition";
+import Water from "../components/Water";
 
 const Home = () => {
   return (
     <PageTransition>
       <BackgroundImage />
       <div>
-        <h1 className="text-2xl">Home</h1>
         <div className="flex flex-col">
           <Super />
-          <div>
-            <Link to="/about" className="text-blue-500">About</Link>
-          </div>
-          <div>
-            <Link to="/projects" className="text-blue-500">Projects</Link>
-          </div>
-          <div>
-            <Link to="/contact" className="text-blue-500">Contact</Link>
-          </div>
+          <Water>
+            <AboutLink />
+            <ProjectLink />
+            <ContactLink />
+          </Water>
         </div>
       </div>
     </PageTransition>
@@ -28,7 +24,7 @@ const Home = () => {
 const Super = () => {
   return (
     <div className="w-screen h-screen backdrop-opacity-0 flex items-center justify-center">
-      <div className="-mt-96">
+      <div className="mt-[-400px]">
         <h1 className="text-7xl">
           I am Pete
         </h1>
@@ -47,5 +43,30 @@ const BackgroundImage = () => {
     />
   )
 }
+
+const AboutLink = () => {
+  return (
+    <div className="w-screen h-screen backdrop-opacity-0 flex items-center justify-center">
+      <Link to="/about" className="text-5xl ml-[500px]">About</Link>
+    </div>
+  )
+}
+
+const ProjectLink = () => {
+  return (
+    <div className="w-screen h-screen backdrop-opacity-0 flex items-center justify-center">
+      <Link to="/project" className="text-5xl ml-[-500px]">Project</Link>
+    </div>
+  )
+}
+
+const ContactLink = () => {
+  return (
+    <div className="w-screen h-screen backdrop-opacity-0 flex items-center justify-center">
+      <Link to="/contact" className="text-5xl ml-[500px]">Contact</Link>
+    </div>
+  )
+}
+
 
 export default Home;
