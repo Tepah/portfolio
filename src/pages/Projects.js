@@ -29,13 +29,13 @@ const Projects = () => {
           </div>
           {/* Project Layer */}
           <div className={"w-screen flex flex-row py-32 justify-center space-x-16"}>
-            <FadeInComponent>
+            <FadeInComponent delay={0}>
               {projectLayer(project_data["MyMuze"])}
             </FadeInComponent>
-            <FadeInComponent>
+            <FadeInComponent delay={0.5}>
               {projectLayer(project_data["Dose"])}
             </FadeInComponent>
-            <FadeInComponent>
+            <FadeInComponent delay={1}>
               {projectLayer(project_data["Flashcardio"])}
             </FadeInComponent>
           </div>
@@ -55,10 +55,10 @@ const Projects = () => {
           <FadeInComponent delay={0}>
             {MobileProjectLayer(project_data["MyMuze"])}
           </FadeInComponent>
-          <FadeInComponent delay={3}>
+          <FadeInComponent delay={0}>
             {MobileProjectLayer(project_data["Dose"])}
           </FadeInComponent>
-          <FadeInComponent delay={6}>
+          <FadeInComponent delay={0}>
             {MobileProjectLayer(project_data["Flashcardio"])}
           </FadeInComponent>
         </div>

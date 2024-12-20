@@ -149,6 +149,9 @@ const MobileContactLinksLayer = () => {
         <div className={"flex flex-row space-x-4 py-8 justify-center"}>
           <a href={"https://www.linkedin.com/in/pete-potipitak/"}><LinkedIn /></a>
           <a href={"https://github.com/Tepah"}><Github /></a>
+        </div>
+
+        <div className={"flex flex-row space-x-4 py-8 justify-center"}>
           <a href={"mailto:potipitak@gmail.com"}><Email /></a>
           <a href="/Pete_Potipitak_Resume.pdf" download><Resume /></a>
         </div>
