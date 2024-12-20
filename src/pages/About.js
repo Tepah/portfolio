@@ -48,6 +48,7 @@ const About = () => {
           <MobileAboutLayer />
           <MobileSkillsLayer />
           <MobileExperienceLayer />
+          <EducationLayer />
         </div>
       </PageTransition>
     )
@@ -58,6 +59,7 @@ const About = () => {
           <Super/>
           {aboutLayer()}
           {skillsLayer()}
+          <EducationLayer />
           {experienceLayer()}
         </div>
       </PageTransition>
@@ -67,7 +69,7 @@ const About = () => {
 
 const Super = () => {
   return (
-    <div className={"w-screen h-screen backdrop-opacity-0 flex flex-col items-center justify-center"}>
+    <div className={"w-screen h-screen backdrop-opacity-0 flex flex-col items-center justify-center text-center"}>
       <h1 className={"text-[14rem]"}>Things about</h1>
       <h1 className={"text-[14rem] text-blue-500"}>Pete</h1>
     </div>
@@ -85,7 +87,7 @@ const MobileSuper = () => {
 
 const aboutLayer = () => {
   return (
-    <div className="h-screen w-screen flex flex-row justify-evenly">
+    <div className="w-screen flex flex-row justify-evenly py-64">
       <div className={"flex flex-col h-1/3 w-1/3"}>
         <img src={about_1} alt="about" />
       </div>
@@ -100,7 +102,7 @@ const aboutLayer = () => {
 
 const MobileAboutLayer = () => {
   return (
-    <div className="h-screen w-screen flex flex-col justify-center items-center">
+    <div className="w-screen flex flex-col justify-center items-center py-32">
       <div className={"flex flex-col h-auto w-3/4"}>
         <img src={about_1} alt="about" />
       </div>
@@ -115,7 +117,7 @@ const MobileAboutLayer = () => {
 
 const skillsLayer = () => {
   return (
-    <div className="h-screen w-screen flex flex-row justify-evenly">
+    <div className="w-screen flex flex-row justify-evenly py-64">
       <div className={"flex flex-col space-y-8 h-1/3 w-1/3 justify-center items-center text-center"}>
         <h1 className={"text-7xl"}>Skills</h1>
         <p className={"text-lg"}>Versatile professional with strong communication and problem-solving skills from
@@ -131,7 +133,7 @@ const skillsLayer = () => {
 
 const MobileSkillsLayer = () => {
   return (
-    <div className={"h-screen w-screen flex flex-col justify-center items-center"}>
+    <div className={"w-screen flex flex-col justify-center items-center py-32"}>
       <div className={"flex flex-col h-5/6 w-3/4"}>
         <img src={about_2} alt="skills" />
       </div>
@@ -147,11 +149,8 @@ const MobileSkillsLayer = () => {
 
 const experienceLayer = () => {
   return (
-    <div className="flex flex-col space-y-32 w-3/4 h-screen">
-      <div className={"flex flex-row justify-evenly"}>
-        <h1 className={"text-7xl"}>Experience</h1>
-        <p></p>
-      </div>
+    <div className="flex flex-col items-center space-y-32 w-screen py-32">
+      <h1 className={"text-7xl"}>Experience</h1>
       <div className={"w-screen flex flex-row justify-evenly"}>
         {ExperienceBox(amazon_experience)}
         {ExperienceBox(assure_experience)}
@@ -162,7 +161,7 @@ const experienceLayer = () => {
 
 const MobileExperienceLayer = () => {
   return (
-    <div className="flex flex-col space-y-8 w-full h-screen">
+    <div className="flex flex-col space-y-8 w-full py-32">
       <div className={"flex flex-row justify-evenly"}>
         <h1 className={"text-7xl"}>Experience</h1>
         <p></p>
@@ -178,7 +177,7 @@ const MobileExperienceLayer = () => {
 
 const ExperienceBox = (experience) => {
   return (
-    <div className={"w-3/4 space-y-4 flex flex-col items-center"}>
+    <div className={"w-3/4 space-y-4 flex flex-col items-center text-left"}>
       <div className={"w-fit flex flex-row justify-center py-16"}>
         {experience.image}
       </div>
@@ -191,6 +190,20 @@ const ExperienceBox = (experience) => {
           return <li className={"text-lg"}>{achievement}</li>
         })}
       </ul>
+    </div>
+  )
+}
+
+const EducationLayer = () => {
+  return (
+    <div className="flex flex-col space-y-32 w-screen py-32 justify-center items-center text-center">
+      <h1 className={"text-7xl"}>Education</h1>
+      <div className={"flex flex-col justify-evenly text-left w-1/2"}>
+        <h1 className={"text-3xl font-bold"}>Orange Coast College</h1>
+        <p className={"text-lg"}>Associate of Science in Computer Science</p>
+        <h1 className={"text-3xl font-bold"}>California State University, Fullerton</h1>
+        <p className={"text-lg"}>Bachelor of Science in Computer Science</p>
+      </div>
     </div>
   )
 }

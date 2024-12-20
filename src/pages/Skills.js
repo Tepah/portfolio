@@ -1,6 +1,8 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import PageTransition from "../components/PageTransition";
 import skills_data from "../data/skills_data";
+import {motion} from "framer-motion";
+import {Footer} from "../components/Footer";
 
 const Skills = () => {
   const [isMobile, setIsMobile] = React.useState(window.innerWidth < 768);
@@ -25,8 +27,13 @@ const Skills = () => {
               <h1 className={"text-[6rem]"}>Here are some</h1>
               <h1 className={"text-[6rem]"}><span className="text-blue-500">Pete</span>'s skills</h1>
             </div>
-            <MobileTechnicalSkillsLayer />
-            <MobileSoftSkillsLayer />
+            <SlideInComponent>
+              <MobileTechnicalSkillsLayer />
+            </SlideInComponent>
+            <SlideInComponent>
+              <MobileSoftSkillsLayer />
+            </SlideInComponent>
+            <Footer />
           </div>
        </PageTransition>
      )
@@ -38,8 +45,13 @@ const Skills = () => {
             <h1 className={"text-[14rem]"}>Here are some</h1>
             <h1 className={"text-[14rem]"}><span className="text-blue-500">Pete</span>'s skills</h1>
           </div>
-          {TechnicalSkillsLayer()}
-          {SoftSkillsLayer()}
+          <SlideInComponent>
+            {TechnicalSkillsLayer()}
+          </SlideInComponent>
+          <SlideInComponent>
+            {SoftSkillsLayer()}
+          </SlideInComponent>
+          <Footer />
         </div>
       </PageTransition>
     )
@@ -139,5 +151,44 @@ const MobileSoftSkillsLayer = () => {
     </div>
   )
 }
+
+const SlideInComponent = ({children}) => {
+  const elementRef = useRef(null);
+  const [inView, setInView] = React.useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setInView(entry.isIntersecting)
+      },
+      {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.01,
+      }
+    );
+
+    if (elementRef.current) {
+      observer.observe(elementRef.current);
+    }
+
+    return () => {
+      if (elementRef.current) {
+        observer.unobserve(elementRef.current);
+      }
+    };
+  }, []);
+
+  return (
+    <motion.div
+      ref={elementRef}
+      initial={{ rotate: 30, y: 200, x: -300, scale: 0.8 }}
+      animate={{ rotate: inView ? 0: 30, y: inView ? 0 : 1000, x: inView ? 0: -300, scale: inView ? 1 : 0.8 }}
+      transition={{ duration: 0.5 }}>
+      {children}
+    </motion.div>
+  )
+}
+
 
 export default Skills;

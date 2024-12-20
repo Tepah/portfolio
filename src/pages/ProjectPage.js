@@ -36,7 +36,7 @@ const ProjectPage = () => {
     return (
       <PageTransition>
         <div className={"flex flex-col"}>
-          <div className={"w-screen h-screen backdrop-opacity-0 flex flex-col items-center justify-center"}>
+          <div className={"w-screen h-screen backdrop-opacity-0 flex flex-col items-center justify-center text-center"}>
             <h1 className={"text-[14rem]"}><span className="text-blue-500">Pete</span>'s Project</h1>
             <h1 className={"text-[14rem]"}>{id}</h1>
           </div>
