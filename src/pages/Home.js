@@ -104,12 +104,13 @@ const MobileSuper = () => {
 
 const DescLayer = () => {
   return (
-    <div className="w-screen backdrop-opacity-0 space-y-8 flex items-center justify-center py-64 bg-blue-200">
-      <div className={"w-3/4 text-center"}>
+    <div className="w-screen backdrop-opacity-0 flex items-center justify-center py-64 bg-blue-200">
+      <div className={"flex flex-col w-3/4 text-center space-y-16"}>
         <p className={"text-2xl"}>A software engineer dedicated to continuous learning and creating impactful projects
           that help people and make a significant difference in society. They possess strong communication and
           problem-solving skills, transitioning from customer service to delivering high-quality software solutions
           in engineering.</p>
+        <p className={"text-xl italics"}>"Despite everything, it's still you." - Frisk</p>
       </div>
     </div>
   )

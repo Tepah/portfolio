@@ -1,7 +1,8 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useRef} from 'react';
 import PageTransition from "../components/PageTransition";
 import {Footer} from "../components/Footer";
 import {project_data} from "../data/project_data";
+import {motion} from "framer-motion";
 
 const Projects = () => {
   const [isMobile, setIsMobile] = React.useState(window.innerWidth < 768);
@@ -27,10 +28,16 @@ const Projects = () => {
             <h1 className={"text-[14rem]"}>worked on</h1>
           </div>
           {/* Project Layer */}
-          <div className={"w-screen flex flex-row py-32 justify-evenly"}>
-            {projectLayer(project_data["MyMuze"])}
-            {projectLayer(project_data["Dose"])}
-            {projectLayer(project_data["Flashcardio"])}
+          <div className={"w-screen flex flex-row py-32 justify-center space-x-16"}>
+            <FadeInComponent>
+              {projectLayer(project_data["MyMuze"])}
+            </FadeInComponent>
+            <FadeInComponent>
+              {projectLayer(project_data["Dose"])}
+            </FadeInComponent>
+            <FadeInComponent>
+              {projectLayer(project_data["Flashcardio"])}
+            </FadeInComponent>
           </div>
           <Footer/>
         </div>
@@ -45,9 +52,15 @@ const Projects = () => {
         </div>
 
         <div className={"w-screen flex flex-col space-y-16"}>
-          {MobileProjectLayer(project_data["MyMuze"])}
-          {MobileProjectLayer(project_data["Dose"])}
-          {MobileProjectLayer(project_data["Flashcardio"])}
+          <FadeInComponent delay={0}>
+            {MobileProjectLayer(project_data["MyMuze"])}
+          </FadeInComponent>
+          <FadeInComponent delay={3}>
+            {MobileProjectLayer(project_data["Dose"])}
+          </FadeInComponent>
+          <FadeInComponent delay={6}>
+            {MobileProjectLayer(project_data["Flashcardio"])}
+          </FadeInComponent>
         </div>
       </div>
     )
@@ -57,7 +70,7 @@ const Projects = () => {
 /* Temporary Project Layer */
 const projectLayer = (project) => {
   return (
-    <div className={"w-1/4"}>
+    <div className={""}>
       <a href={"/project/"+ project.title} className="flex flex-col justify-center space-y-4 items-center text-center">
         {/* Project Image */}
         <div className={"h-[40rem] flex justify-center items-center"}>
@@ -88,6 +101,44 @@ const MobileProjectLayer = (project) => {
         <p className={"text-lg text-blue-500"}>Click to learn more..</p>
       </a>
     </div>
+  )
+}
+
+const FadeInComponent = ({children, delay}) => {
+  const elementRef = useRef(null);
+  const [inView, setInView] = React.useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setInView(entry.isIntersecting)
+      },
+      {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.3,
+      }
+    );
+
+    if (elementRef.current) {
+      observer.observe(elementRef.current);
+    }
+
+    return () => {
+      if (elementRef.current) {
+        observer.unobserve(elementRef.current);
+      }
+    };
+  }, []);
+
+  return (
+    <motion.div
+      ref={elementRef}
+      initial={{ opacity: 0, y: -100 }}
+      animate={{ opacity: inView ? 1 : 0, y: inView ? 0 : -100}}
+      transition={{ duration: 0.5, delay: delay}}>
+      {children}
+    </motion.div>
   )
 }
 

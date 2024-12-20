@@ -1,8 +1,9 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useRef} from 'react';
 import {Outlet, Link, useParams} from "react-router-dom";
 import PageTransition from "../components/PageTransition";
 import {project_data} from "../data/project_data";
 import {ReactComponent as Github} from "../assets/github-mark.svg";
+import {motion} from "framer-motion";
 
 const ProjectPage = () => {
   const { id } = useParams();
@@ -52,7 +53,9 @@ const ProjectLayer = (project) => {
     <div className={"w-screen flex flex-col space-y-8 py-64 items-center"}>
       <div className={"w-screen flex flex-row space-x-8 justify-center pb-64"}>
         {project.images.map((image, index) => (
-          <img key={index} src={image} alt={project.title} className={"w-1/4 h-[40rem] object-contain"} />
+          <FadeInComponent>
+            <img key={index} src={image} alt={project.title} className={"h-[40rem] object-contain"} />
+          </FadeInComponent>
         ))}
       </div>
       <p className={"text-lg w-3/4"}>{project.long_desc}</p>
@@ -73,11 +76,53 @@ const MobileProjectLayer = (project) => {
       <a href={project["link"]}><Github /></a>
       <div className={"w-screen flex flex-col space-y-8 justify-center pb-32 items-center"}>
         {project.images.map((image, index) => (
-          <img key={index} src={image} alt={project.title} className={"w-4/5 h-[40rem] object-contain"} />
+          <FadeInComponent>
+            <img key={index} src={image} alt={project.title} className={"w-4/5 h-[40rem] object-contain"} />
+          </FadeInComponent>
         ))}
       </div>
     </div>
   )
 }
+
+
+const FadeInComponent = ({children}) => {
+  const elementRef = useRef(null);
+  const [inView, setInView] = React.useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setInView(entry.isIntersecting)
+      },
+      {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.3,
+      }
+    );
+
+    if (elementRef.current) {
+      observer.observe(elementRef.current);
+    }
+
+    return () => {
+      if (elementRef.current) {
+        observer.unobserve(elementRef.current);
+      }
+    };
+  }, []);
+
+  return (
+    <motion.div
+      ref={elementRef}
+      initial={{ opacity: 0, y: -100 }}
+      animate={{ opacity: inView ? 1 : 0, y: inView ? 0 : -100}}
+      transition={{ duration: 0.5 }}>
+      {children}
+    </motion.div>
+  )
+}
+
 
 export default ProjectPage;

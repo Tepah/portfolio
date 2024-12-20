@@ -4,7 +4,9 @@ import emailjs from 'emailjs-com';
 import { ReactComponent as LinkedIn } from '../assets/icons8-linkedin-250.svg'
 import { ReactComponent as Github } from "../assets/github-mark.svg"
 import { ReactComponent as Email} from "../assets/email-circle-fill-svgrepo-com.svg"
+import { ReactComponent as Resume} from "../assets/curriculum-resume-svgrepo-com.svg"
 import contact from "../assets/IMG_0697.jpg"
+import resume from "../assets/Pete_Potipitak_Resume.pdf"
 
 const Contact = () => {
   const [isMobile, setIsMobile] = React.useState(window.innerWidth < 768);
@@ -132,6 +134,7 @@ const ContactLinksLayer = () => {
           <a href={"https://www.linkedin.com/in/pete-potipitak/"}><LinkedIn /></a>
           <a href={"https://github.com/Tepah"}><Github /></a>
           <a href={"mailto:potipitak@gmail.com"}><Email /></a>
+          <a href="/Pete_Potipitak_Resume.pdf" download><Resume /></a>
         </div>
       </div>
     </div>
@@ -147,6 +150,7 @@ const MobileContactLinksLayer = () => {
           <a href={"https://www.linkedin.com/in/pete-potipitak/"}><LinkedIn /></a>
           <a href={"https://github.com/Tepah"}><Github /></a>
           <a href={"mailto:potipitak@gmail.com"}><Email /></a>
+          <a href="/Pete_Potipitak_Resume.pdf" download><Resume /></a>
         </div>
       </div>
     </div>

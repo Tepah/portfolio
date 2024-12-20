@@ -1,10 +1,11 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useRef} from 'react';
 import PageTransition from "../components/PageTransition";
 import {Link} from "react-router-dom";
 import about_1 from "../assets/About-1.png";
 import about_2 from "../assets/About-2.png";
 import Amazon from "../assets/Amazon_logo.svg";
 import csuf from "../assets/CSUF.png";
+import {motion} from "framer-motion";
 
 const amazon_experience = {
   title: "Amazon",
@@ -92,9 +93,11 @@ const aboutLayer = () => {
         <img src={about_1} alt="about" />
       </div>
       <div className={"flex flex-col space-y-8 h-1/3 w-1/3 justify-center items-center text-center"}>
-        <h1 className={"text-7xl"}>About</h1>
-        <p className={"text-lg"}>A Software Engineer passionate about creating impactful projects that help people and make a significant
-          difference in society. Dedicated to continuous learning and striving for excellence in every endeavor.</p>
+        <FadeInComponent>
+          <h1 className={"text-7xl"}>About</h1>
+          <p className={"text-lg"}>A Software Engineer passionate about creating impactful projects that help people and make a significant
+            difference in society. Dedicated to continuous learning and striving for excellence in every endeavor.</p>
+        </FadeInComponent>
       </div>
     </div>
   )
@@ -119,10 +122,12 @@ const skillsLayer = () => {
   return (
     <div className="w-screen flex flex-row justify-evenly py-64">
       <div className={"flex flex-col space-y-8 h-1/3 w-1/3 justify-center items-center text-center"}>
-        <h1 className={"text-7xl"}>Skills</h1>
-        <p className={"text-lg"}>Versatile professional with strong communication and problem-solving skills from
-          customer service, now delivering high-quality software solutions in engineering.</p><br />
-        <Link to={"/skills"} className={"text-lg text-blue-500"}>Learn more</Link>
+        <FadeInComponent>
+          <h1 className={"text-7xl"}>Skills</h1>
+          <p className={"text-lg"}>Versatile professional with strong communication and problem-solving skills from
+            customer service, now delivering high-quality software solutions in engineering.</p><br />
+          <Link to={"/skills"} className={"text-lg text-blue-500"}>Learn more</Link>
+        </FadeInComponent>
       </div>
       <div className={"flex flex-col h-1/3 w-1/3"}>
         <img src={about_2} alt="skills" />
@@ -181,15 +186,17 @@ const ExperienceBox = (experience) => {
       <div className={"w-fit flex flex-row justify-center py-16"}>
         {experience.image}
       </div>
-      <h1 className={"text-6xl"}>{experience.title}</h1>
-      <p className={"text-lg"}>{experience.description}</p>
-      <p className={"text-lg"}>{experience.date}</p>
-      <p className={"text-lg"}>Achievements: </p>
-      <ul className={"w-5/6 md:w-1/2 list-disc list-inside"}>
-        {experience.achievements.map((achievement) => {
-          return <li className={"text-lg"}>{achievement}</li>
-        })}
-      </ul>
+      <FadeInComponent>
+        <h1 className={"text-6xl"}>{experience.title}</h1>
+        <p className={"text-lg"}>{experience.description}</p>
+        <p className={"text-lg"}>{experience.date}</p>
+        <p className={"text-lg"}>Achievements: </p>
+        <ul className={"w-5/6 md:w-1/2 list-disc list-inside"}>
+          {experience.achievements.map((achievement) => {
+            return <li className={"text-lg"}>{achievement}</li>
+          })}
+        </ul>
+      </FadeInComponent>
     </div>
   )
 }
@@ -205,6 +212,44 @@ const EducationLayer = () => {
         <p className={"text-lg"}>Bachelor of Science in Computer Science</p>
       </div>
     </div>
+  )
+}
+
+const FadeInComponent = ({children}) => {
+  const elementRef = useRef(null);
+  const [inView, setInView] = React.useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setInView(entry.isIntersecting)
+      },
+      {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.2,
+      }
+    );
+
+    if (elementRef.current) {
+      observer.observe(elementRef.current);
+    }
+
+    return () => {
+      if (elementRef.current) {
+        observer.unobserve(elementRef.current);
+      }
+    };
+  }, []);
+
+  return (
+    <motion.div
+      ref={elementRef}
+      initial={{ opacity: 0, y: 100 }}
+      animate={{ opacity: inView ? 1 : 0, y: inView ? 0 : 100}}
+      transition={{ duration: 0.5 }}>
+      {children}
+    </motion.div>
   )
 }
 
