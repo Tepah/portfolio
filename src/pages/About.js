@@ -43,27 +43,23 @@ const About = () => {
 
   if (isMobile) {
     return (
-      <PageTransition>
-        <div className={"flex flex-col"}>
-          <MobileSuper />
-          <MobileAboutLayer />
-          <MobileSkillsLayer />
-          <MobileExperienceLayer />
-          <EducationLayer />
-        </div>
-      </PageTransition>
+      <div className={"flex flex-col"}>
+        <MobileSuper />
+        <MobileAboutLayer />
+        <MobileSkillsLayer />
+        <MobileExperienceLayer />
+        <EducationLayer />
+      </div>
     )
   } else {
     return (
-      <PageTransition>
-        <div className={"flex flex-col"}>
-          <Super/>
-          {aboutLayer()}
-          {skillsLayer()}
-          <EducationLayer />
-          {experienceLayer()}
-        </div>
-      </PageTransition>
+      <div className={"flex flex-col"}>
+        <Super/>
+        {aboutLayer()}
+        {skillsLayer()}
+        <EducationLayer />
+        {experienceLayer()}
+      </div>
     )
   }
 }
@@ -92,7 +88,7 @@ const aboutLayer = () => {
       <div className={"flex flex-col h-1/3 w-1/3"}>
         <img src={about_1} alt="about" />
       </div>
-      <div className={"flex flex-col space-y-8 h-1/3 w-1/3 justify-center items-center text-center"}>
+      <div className={"flex flex-col space-y-8 w-1/3 justify-center items-center text-center"}>
         <FadeInComponent>
           <h1 className={"text-7xl"}>About</h1>
           <p className={"text-lg"}>A Software Engineer passionate about creating impactful projects that help people and make a significant
@@ -121,7 +117,7 @@ const MobileAboutLayer = () => {
 const skillsLayer = () => {
   return (
     <div className="w-screen flex flex-row justify-evenly py-64">
-      <div className={"flex flex-col space-y-8 h-1/3 w-1/3 justify-center items-center text-center"}>
+      <div className={"flex flex-col space-y-8 w-1/3 justify-center items-center text-center"}>
         <FadeInComponent>
           <h1 className={"text-7xl"}>Skills</h1>
           <p className={"text-lg"}>Versatile professional with strong communication and problem-solving skills from

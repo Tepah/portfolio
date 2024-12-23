@@ -22,33 +22,29 @@ const Home = () => {
 
   if (isMobile) {
     return (
-      <PageTransition>
-        <div className="flex flex-col">
-          <BackgroundImage/>
-          <MobileSuper/>
-          <DescLayer/>
-          <MobileAbout/>
-          <MobileProject/>
-          <MobileSkills/>
-          <MobileContact/>
-          <Footer/>
-        </div>
-      </PageTransition>
+      <div className="flex flex-col">
+        <BackgroundImage/>
+        <MobileSuper/>
+        <DescLayer/>
+        <MobileAbout/>
+        <MobileProject/>
+        <MobileSkills/>
+        <MobileContact/>
+        <Footer/>
+      </div>
     )
   } else {
     return (
-      <PageTransition>
-        <div className="flex flex-col">
-          <BackgroundImage/>
-          <Super/>
-          <DescLayer />
-          <AboutLink/>
-          <ProjectLink/>
-          <SkillsLink/>
-          <ContactLink/>
-          <Footer/>
-        </div>
-      </PageTransition>
+      <div className="flex flex-col">
+        <BackgroundImage/>
+        <Super/>
+        <DescLayer />
+        <AboutLink/>
+        <ProjectLink/>
+        <SkillsLink/>
+        <ContactLink/>
+        <Footer/>
+      </div>
     )
   }
 };

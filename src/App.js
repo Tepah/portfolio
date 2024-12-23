@@ -9,21 +9,24 @@ import Layout from './pages/Layout';
 import Skills from './pages/Skills';
 import './App.css';
 import ProjectPage from "./pages/ProjectPage";
+import PageTransition from "./components/PageTransition";
 
 function App() {
   return (
     <Router>
       <AnimatePresence wait>
-        <Routes>
-          <Route path="/" element={<Layout />}>
-            <Route path="/" element={<Home />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/skills" element={<Skills />} />
-            <Route path="/projects" element={<Projects />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/project/:id" element={<ProjectPage />} />
-          </Route>
-        </Routes>
+        <PageTransition>
+          <Routes>
+            <Route path="/" element={<Layout />}>
+              <Route path="/" element={<Home />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/skills" element={<Skills />} />
+              <Route path="/projects" element={<Projects />} />
+              <Route path="/contact" element={<Contact />} />
+              <Route path="/project/:id" element={<ProjectPage />} />
+            </Route>
+          </Routes>
+        </PageTransition>
       </AnimatePresence>
     </Router>
   );
