@@ -68,9 +68,22 @@ const PageTransition = ({ children }) => {
           onAnimationComplete={() => setShowTransition(false)}>
         </m.div>
       )}
+
+      {
+        /* TODO: Make Transition Out
+        /*{transitionOut && (*/}
+      {/*  <m.div*/}
+      {/*    initial={{width: 0, height: 0}}*/}
+      {/*    animate={{width: "350rem", height: "350rem"}}*/}
+      {/*    transition={{duration: 1}}*/}
+      {/*    exit={{width: "350rem", height: "350rem"}}*/}
+      {/*    className="rounded-full fixed border-blue-500 border-[10rem] z-50 top-0 left-0 transform -translate-x-1/2 -translate-y-1/2"*/}
+      {/*    />*/}
+      {/*)}*/}
       <div className="absolute inset-0 z-40">
         {Children.map(children, child => {
           if (isValidElement(child)) {
+            console.log("hello")
             return cloneElement(child, { onClick: handleLinkClick });
           }
           return child;

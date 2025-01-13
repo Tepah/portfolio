@@ -24,7 +24,7 @@ const Skills = () => {
        <PageTransition>
           <div className={"flex flex-col"}>
             <div className={"w-screen h-screen backdrop-opacity-0 flex flex-col items-center justify-center text-center"}>
-              <h1 className={"text-[6rem]"}>Here are some</h1>
+              <h1 className={"text-[6rem]"}>Here are</h1>
               <h1 className={"text-[6rem]"}><span className="text-blue-500">Pete</span>'s skills</h1>
             </div>
             <SlideInComponent>
@@ -42,7 +42,7 @@ const Skills = () => {
       <PageTransition>
         <div className={"flex flex-col"}>
           <div className={"w-screen h-screen backdrop-opacity-0 flex flex-col items-center justify-center"}>
-            <h1 className={"text-[14rem]"}>Here are some</h1>
+            <h1 className={"text-[14rem]"}>Here are</h1>
             <h1 className={"text-[14rem]"}><span className="text-blue-500">Pete</span>'s skills</h1>
           </div>
           <SlideInComponent>

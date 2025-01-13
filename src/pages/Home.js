@@ -114,15 +114,68 @@ const DescLayer = () => {
 
 
 const AboutLink = () => {
+  const [isHovered, setIsHovered] = React.useState(false);
+
   return (
     <div className="relative w-screen backdrop-opacity-0 flex items-center justify-end py-64">
       <div className={"text-center space-y-8 w-1/2 flex flex-col justify-center"}>
         <FadeInComponent>
           <motion.div
+            className="relative"
             whileHover={hoverAnimation}
-            transition={hoverTransition}>
+            transition={hoverTransition}
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+          >
             <Link to="/about" className="text-7xl">About</Link>
-            <p className={"text-xl"}>A page to get to know more about me.</p>
+            <p className={"text-xl"}>
+              <motion.span
+                initial={initialHoverText}
+                animate={isHovered ? hoverTextShow: initialHoverText}
+                transition={{ duration: 0.2}}
+              >
+              A page
+              </motion.span>
+              &nbsp;
+              <motion.span
+                initial={initialHoverText}
+                animate={isHovered ? hoverTextShow: initialHoverText}
+                transition={{ duration: 0.2, delay: 0.1}}
+              >
+              to get
+              </motion.span>
+              &nbsp;
+              <motion.span
+                initial={initialHoverText}
+                animate={isHovered ? hoverTextShow: initialHoverText}
+                transition={{ duration: 0.2, delay: 0.2}}
+              >
+              to know
+              </motion.span>
+              &nbsp;
+              <motion.span
+                initial={initialHoverText}
+                animate={isHovered ? hoverTextShow: initialHoverText}
+                transition={{ duration: 0.2, delay: 0.3}}
+              >
+              more about
+              </motion.span>
+              &nbsp;
+              <motion.span
+                initial={initialHoverText}
+                animate={isHovered ? hoverTextShow: initialHoverText}
+                transition={{ duration: 0.2, delay: 0.4}}
+              >
+              me
+              </motion.span>
+              <motion.span
+                initial={initialHoverText}
+                animate={isHovered ? hoverTextShow: initialHoverText}
+                transition={{ duration: 0.2, delay: 0.5}}
+              >
+              .
+              </motion.span>
+            </p>
           </motion.div>
         </FadeInComponent>
       </div>
@@ -145,15 +198,52 @@ const MobileAbout = () => {
 }
 
 const ProjectLink = () => {
+  const [isHovered, setIsHovered] = React.useState(false)
+
   return (
     <div className="w-screen backdrop-opacity-0 flex items-center justify-start h-screen ">
       <div className={"text-center space-y-8 w-1/2 flex flex-col justify-center"}>
         <FadeInComponent>
           <motion.div
             whileHover={hoverAnimation}
-            transition={hoverTransition}>
+            transition={hoverTransition}
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+          >
             <Link to="/projects" className="text-7xl">Projects</Link>
-            <p className={"text-xl"}>Take a look at my projects and ideas</p>
+            <p className={"text-xl"}>
+              <motion.span
+                initial={initialHoverText}
+                animate={isHovered ? hoverTextShow: initialHoverText}
+                transition={{ duration: 0.2}}
+              >
+              Take a
+              </motion.span>
+              &nbsp;
+              <motion.span
+                initial={initialHoverText}
+                animate={isHovered ? hoverTextShow: initialHoverText}
+                transition={{ duration: 0.2, delay: 0.1}}
+              >
+              look at
+              </motion.span>
+              &nbsp;
+              <motion.span
+                initial={initialHoverText}
+                animate={isHovered ? hoverTextShow: initialHoverText}
+                transition={{ duration: 0.2, delay: 0.2}}
+              >
+              my projects
+              </motion.span>
+              &nbsp;
+              <motion.span
+                initial={initialHoverText}
+                animate={isHovered ? hoverTextShow: initialHoverText}
+                transition={{ duration: 0.2, delay: 0.3}}
+              >
+              and ideas
+              </motion.span>
+              </p>
           </motion.div>
         </FadeInComponent>
       </div>
@@ -176,15 +266,43 @@ const MobileProject = () => {
 
 
 const SkillsLink = () => {
+  const [isHovered, setIsHovered] = React.useState(false)
+
   return (
     <div className="w-screen backdrop-opacity-0 flex items-center justify-end h-screen">
       <div className={"text-center space-y-8 w-1/2 flex flex-col justify-center"}>
         <FadeInComponent>
           <motion.div
             whileHover={hoverAnimation}
-            transition={hoverTransition}>
+            transition={hoverTransition}
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}>
             <Link to="/skills" className="text-7xl">Skills</Link>
-            <p className={"text-xl"}>Here are some of my skills</p>
+            <p className={"text-xl"}>
+              <motion.span
+                initial={initialHoverText}
+                animate={isHovered ? hoverTextShow: initialHoverText}
+                transition={{ duration: 0.2}}
+              >
+              Here are
+              </motion.span>
+              &nbsp;
+              <motion.span
+                initial={initialHoverText}
+                animate={isHovered ? hoverTextShow: initialHoverText}
+                transition={{ duration: 0.2, delay: 0.1}}
+              >
+              some of
+              </motion.span>
+              &nbsp;
+              <motion.span
+                initial={initialHoverText}
+                animate={isHovered ? hoverTextShow: initialHoverText}
+                transition={{ duration: 0.2, delay: 0.2}}
+              >
+              my skills
+              </motion.span>
+              </p>
           </motion.div>
         </FadeInComponent>
       </div>
@@ -206,15 +324,50 @@ const MobileSkills = () => {
 }
 
 const ContactLink = () => {
+  const [isHovered, setIsHovered] = React.useState(false);
+
   return (
     <div className="w-screen backdrop-opacity-0 flex items-center justify-start py-64">
       <div className={"text-center space-y-8 w-1/2 flex flex-col justify-center"}>
         <FadeInComponent>
           <motion.div
             whileHover={hoverAnimation}
-            transition={hoverTransition}>
+            transition={hoverTransition}
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+          >
             <Link to="/contact" className="text-7xl">Contact</Link>
-            <p className={"text-xl"}>Get in touch with me</p>
+            <div className={"text-xl"}>
+              <motion.span
+                initial={initialHoverText}
+                animate={isHovered ? hoverTextShow: initialHoverText}
+                transition={{ duration: 0.2}}
+              >
+                Get in
+              </motion.span>
+              &nbsp;
+              <motion.span
+                animate={isHovered ? hoverTextShow: initialHoverText}
+                transition={{ duration: 0.2, delay: 0.1}}
+              >
+                touch
+              </motion.span>
+              &nbsp;
+              <motion.span
+                initial={initialHoverText}
+                animate={isHovered ? hoverTextShow: initialHoverText}
+                transition={{ duration: 0.2, delay: 0.2}}
+              >
+                with me
+              </motion.span>
+              <motion.span
+                initial={initialHoverText}
+                animate={isHovered ? hoverTextShow: initialHoverText}
+                transition={{ duration: 0.2, delay: 0.3}}
+              >
+                .
+              </motion.span>
+            </div>
           </motion.div>
         </FadeInComponent>
       </div>
@@ -228,7 +381,9 @@ const MobileContact = () => {
       <div className={"text-center space-y-8"}>
         <FadeInComponent>
           <Link to="/contact" className="text-4xl">Contact</Link>
-          <p className={"text-lg"}>Get in touch with me</p>
+
+          <p className={"text-lg"}>
+              Get in touch with me</p>
         </FadeInComponent>
       </div>
     </div>
@@ -279,5 +434,15 @@ const hoverAnimation = {
 };
 
 const hoverTransition = {duration: 0.1}
+
+const initialHoverText = {
+  opacity: 0,
+  y: 100
+}
+
+const hoverTextShow = {
+  opacity: 1,
+  y: 0
+}
 
 export default Home;
