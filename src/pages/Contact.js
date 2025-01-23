@@ -27,7 +27,7 @@ const Contact = () => {
     return (
       <PageTransition>
         <div className={"flex flex-col"}>
-          <div className={"w-screen h-screen backdrop-opacity-0 flex flex-col items-center justify-center"}>
+          <div className={"w-screen h-screen backdrop-opacity-0 flex flex-col items-center justify-center text-center"}>
             <h1 className={"text-[6rem]"}>Contact</h1>
             <h1 className={"text-[6rem]"}><span className="text-blue-500">Pete</span> here</h1>
           </div>

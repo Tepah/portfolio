@@ -48,7 +48,7 @@ const About = () => {
         <MobileAboutLayer />
         <MobileSkillsLayer />
         <MobileExperienceLayer />
-        <EducationLayer />
+        <MobileEducationLayer />
       </div>
     )
   } else {
@@ -57,7 +57,6 @@ const About = () => {
         <Super/>
         {aboutLayer()}
         {skillsLayer()}
-        <EducationLayer />
         {experienceLayer()}
       </div>
     )
@@ -88,7 +87,7 @@ const aboutLayer = () => {
       <div className={"flex flex-col h-1/3 w-1/3"}>
         <img src={about_1} alt="about" />
       </div>
-      <div className={"flex flex-col space-y-8 w-1/3 justify-center items-center text-center"}>
+      <div className={"flex flex-col space-y-16 w-1/3 justify-center items-center text-center"}>
         <FadeInComponent>
           <h1 className={"text-7xl"}>About</h1>
           <p className={"text-lg"}>A Software Engineer passionate about creating impactful projects that help people and make a significant
@@ -105,7 +104,7 @@ const MobileAboutLayer = () => {
       <div className={"flex flex-col h-auto w-3/4"}>
         <img src={about_1} alt="about" />
       </div>
-      <div className={"flex flex-col space-y-8 h-3/4 w-3/4 justify-center items-center text-center"}>
+      <div className={"flex flex-col space-y-16 h-3/4 w-3/4 justify-center items-center text-center"}>
         <h1 className={"text-7xl"}>About</h1>
         <p className={"text-lg"}>A Software Engineer passionate about creating impactful projects that help people and make a significant
           difference in society. Dedicated to continuous learning and striving for excellence in every endeavor.</p>
@@ -117,7 +116,7 @@ const MobileAboutLayer = () => {
 const skillsLayer = () => {
   return (
     <div className="w-screen flex flex-row justify-evenly py-64">
-      <div className={"flex flex-col space-y-8 w-1/3 justify-center items-center text-center"}>
+      <div className={"flex flex-col space-y-16 w-1/3 justify-center items-center text-center"}>
         <FadeInComponent>
           <h1 className={"text-7xl"}>Skills</h1>
           <p className={"text-lg"}>Versatile professional with strong communication and problem-solving skills from
@@ -138,7 +137,7 @@ const MobileSkillsLayer = () => {
       <div className={"flex flex-col h-5/6 w-3/4"}>
         <img src={about_2} alt="skills" />
       </div>
-      <div className={"flex flex-col space-y-8 h-3/4 w-3/4 justify-center items-center text-center"}>
+      <div className={"flex flex-col space-y-16 h-3/4 w-3/4 justify-center items-center text-center"}>
         <h1 className={"text-7xl"}>Skills</h1>
         <p className={"text-lg"}>Versatile professional with strong communication and problem-solving skills from
           customer service, now delivering high-quality software solutions in engineering.</p><br />
@@ -153,8 +152,9 @@ const experienceLayer = () => {
     <div className="flex flex-col items-center space-y-32 w-screen py-32">
       <h1 className={"text-7xl"}>Experience</h1>
       <div className={"w-screen flex flex-row justify-evenly"}>
-        {ExperienceBox(amazon_experience)}
-        {ExperienceBox(assure_experience)}
+        {ExperienceBox(amazon_experience, 0)}
+        {ExperienceBox(assure_experience, 0.2)}
+        {EducationBox(0.4)}
       </div>
     </div>
   )
@@ -162,56 +162,101 @@ const experienceLayer = () => {
 
 const MobileExperienceLayer = () => {
   return (
-    <div className="flex flex-col space-y-8 w-full py-32">
+    <div className="flex flex-col space-y-16 w-full py-16">
       <div className={"flex flex-row justify-evenly"}>
         <h1 className={"text-7xl"}>Experience</h1>
         <p></p>
       </div>
-      <div className={"w-full flex flex-col justify-center items-center"}>
-        {ExperienceBox(amazon_experience)}
-        {ExperienceBox(assure_experience)}
+      <div className={"w-full flex flex-col space-y-16 justify-center items-center"}>
+        {MobileExperienceBox(amazon_experience)}
+        {MobileExperienceBox(assure_experience)}
       </div>
     </div>
   )
 }
 
 
-const ExperienceBox = (experience) => {
+const ExperienceBox = (experience, delay) => {
   return (
-    <div className={"w-3/4 space-y-4 flex flex-col items-center text-left"}>
+    <FadeInComponent className={"w-full flex flex-row justify-center"} delay={delay}>
+      <div className={"w-4/5 space-y-8 flex flex-col justify-center items-center"}>
+        <div className={"w-fit flex flex-row justify-center py-16 self-center"}>
+          {experience.image}
+        </div>
+        <h1 className={"text-6xl self-center"}>{experience.title}</h1>
+        <p className={"text-lg self-center"}>{experience.description}</p>
+        <p className={"text-lg self-center"}>{experience.date}</p>
+        <div className={"w-4/5 flex flex-col space-y-8"}>
+          <p className={"text-lg font-bold"}>Achievements: </p>
+          <ul className={"list-disc list-inside"}>
+            {experience.achievements.map((achievement) => {
+              return <li className={"text-lg"}>{achievement}</li>
+            })}
+          </ul>
+          </div>
+      </div>
+    </FadeInComponent>
+  )
+}
+
+
+const EducationBox = (delay) => {
+  return (
+    <FadeInComponent className={"w-full flex flex-col justify-center items-center space-y-16"} delay={delay}>
+      <h1 className={"text-6xl"}>Education</h1>
+      <div className={"w-4/5 flex flex-col space-y-8"}>
+        <div>
+          <h1 className={"text-3xl font-bold"}>California State University, Fullerton</h1>
+          <p className={"text-lg"}>Bachelor of Science in Computer Science</p>
+        </div>
+        <div>
+          <h1 className={"text-3xl font-bold"}>Orange Coast College</h1>
+          <p className={"text-lg"}>Associate of Science in Computer Science</p>
+        </div>
+      </div>
+    </FadeInComponent>
+  )
+}
+
+
+const MobileExperienceBox = (experience) => {
+  return (
+    <div className={"w-4/5 space-y-8 flex flex-col text-left"}>
       <div className={"w-fit flex flex-row justify-center py-16"}>
         {experience.image}
       </div>
-      <FadeInComponent>
-        <h1 className={"text-6xl"}>{experience.title}</h1>
-        <p className={"text-lg"}>{experience.description}</p>
-        <p className={"text-lg"}>{experience.date}</p>
-        <p className={"text-lg"}>Achievements: </p>
-        <ul className={"w-5/6 md:w-1/2 list-disc list-inside"}>
-          {experience.achievements.map((achievement) => {
-            return <li className={"text-lg"}>{achievement}</li>
-          })}
-        </ul>
-      </FadeInComponent>
+      <h1 className={"text-6xl text-center"}>{experience.title}</h1>
+      <p className={"text-lg text-center"}>{experience.description}</p>
+      <p className={"text-lg text-center"}>{experience.date}</p>
+      <p className={"text-lg font-bold"}>Achievements: </p>
+      <ul className={"w-5/6 list-disc list-inside text-center"}>
+        {experience.achievements.map((achievement) => {
+          return <li className={"text-lg"}>{achievement}</li>
+        })}
+      </ul>
     </div>
   )
 }
 
-const EducationLayer = () => {
+const MobileEducationLayer = () => {
   return (
-    <div className="flex flex-col space-y-32 w-screen py-32 justify-center items-center text-center">
+    <div className="flex flex-col space-y-16 w-full py-16 justify-center items-center text-center">
       <h1 className={"text-7xl"}>Education</h1>
-      <div className={"flex flex-col justify-evenly text-left w-1/2"}>
-        <h1 className={"text-3xl font-bold"}>Orange Coast College</h1>
-        <p className={"text-lg"}>Associate of Science in Computer Science</p>
-        <h1 className={"text-3xl font-bold"}>California State University, Fullerton</h1>
-        <p className={"text-lg"}>Bachelor of Science in Computer Science</p>
+      <div className={"flex flex-col justify-evenly space-y-16 text-left w-4/5"}>
+        <div>
+          <h1 className={"text-3xl font-bold"}>Orange Coast College</h1>
+          <p className={"text-lg"}>Associate of Science in Computer Science</p>
+        </div>
+        <div>
+          <h1 className={"text-3xl font-bold"}>California State University, Fullerton</h1>
+          <p className={"text-lg"}>Bachelor of Science in Computer Science</p>
+        </div>
       </div>
     </div>
   )
 }
 
-const FadeInComponent = ({children}) => {
+const FadeInComponent = ({children, className, delay=0}) => {
   const elementRef = useRef(null);
   const [inView, setInView] = React.useState(false);
 
@@ -240,10 +285,11 @@ const FadeInComponent = ({children}) => {
 
   return (
     <motion.div
+      className={className}
       ref={elementRef}
       initial={{ opacity: 0, y: 100 }}
       animate={{ opacity: inView ? 1 : 0, y: inView ? 0 : 100}}
-      transition={{ duration: 0.5 }}>
+      transition={{ duration: 0.5, delay: delay }}>
       {children}
     </motion.div>
   )

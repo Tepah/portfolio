@@ -15,7 +15,6 @@ function App() {
   return (
     <Router>
       <AnimatePresence wait>
-        <PageTransition>
           <Routes>
             <Route path="/" element={<Layout />}>
               <Route path="/" element={<Home />} />
@@ -26,7 +25,6 @@ function App() {
               <Route path="/project/:id" element={<ProjectPage />} />
             </Route>
           </Routes>
-        </PageTransition>
       </AnimatePresence>
     </Router>
   );
