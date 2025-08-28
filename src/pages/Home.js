@@ -53,8 +53,6 @@ const Home = () => {
 };
 
 const BackgroundImage = () => {
-  const heroImage = require("../assets/IMG_0697.jpg");
-
   return (
     <div className={"fixed flex justify-center items-center w-screen h-screen z-1"}>
       <motion.div
