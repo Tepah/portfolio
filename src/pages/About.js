@@ -5,6 +5,7 @@ import about_1 from "../assets/About-1.png";
 import about_2 from "../assets/About-2.png";
 import Amazon from "../assets/Amazon_logo.svg";
 import csuf from "../assets/CSUF.png";
+import codingStem from "../assets/Codingstem_logo.png";
 import {motion} from "framer-motion";
 
 const amazon_experience = {
@@ -14,7 +15,7 @@ const amazon_experience = {
     "Worked with 5 teams on 6 different packages.", "Successfully tested and deployed code through multiple revisions and " +
     "thorough code reviews."],
   date: "August 2022 - November 2022",
-  image: <img src={Amazon} alt={"Amazon"} className={"w-1/2 h-auto contain-content"} />
+  image: <img src={Amazon} alt={"Amazon"} className={"w-48 h-48 object-contain"} />
 }
 
 const assure_experience = {
@@ -24,7 +25,17 @@ const assure_experience = {
     "Worked with one other person to create results that would satisfy both of us",
     "Created a scatterplot with a trendline to show the correlation between two variables."],
   date: "June 2022 - July 2022",
-  image: <img src={csuf} alt={"CSUF"} className={"w-1/2 h-auto contain-content"} />
+  image: <img src={csuf} alt={"CSUF"} className={"w-48 h-48 object-contain"} />
+}
+
+const academy_experience = {
+  title: "Coding Stem Academy",
+  description: "Academic Director/Coding Instructor",
+  achievements: ["Collaborated with students to create a Learning Management System to utilizes AI, Next.js, Flask, and MySQL (among other programs)",
+    "Assisted students in learning development skills with focus on Python, JavaScript, and React.",
+    "Created a curriculum for students to learn the basics of programming and web development."],
+  date: "February 2025 - Current",
+  image: <img src={codingStem} alt={"Coding Stem Academy"} className={"w-48 h-48 object-contain"} />
 }
 
 const About = () => {
@@ -154,6 +165,9 @@ const experienceLayer = () => {
       <div className={"w-screen flex flex-row justify-evenly"}>
         {ExperienceBox(amazon_experience, 0)}
         {ExperienceBox(assure_experience, 0.2)}
+        {ExperienceBox(academy_experience, 0.4)}
+      </div>
+      <div className={"w-full px-12"}>
         {EducationBox(0.4)}
       </div>
     </div>
@@ -170,6 +184,7 @@ const MobileExperienceLayer = () => {
       <div className={"w-full flex flex-col space-y-16 justify-center items-center"}>
         {MobileExperienceBox(amazon_experience)}
         {MobileExperienceBox(assure_experience)}
+        {MobileExperienceBox(academy_experience)}
       </div>
     </div>
   )
@@ -178,22 +193,24 @@ const MobileExperienceLayer = () => {
 
 const ExperienceBox = (experience, delay) => {
   return (
-    <FadeInComponent className={"w-full flex flex-row justify-center"} delay={delay}>
-      <div className={"w-4/5 space-y-8 flex flex-col justify-center items-center"}>
-        <div className={"w-fit flex flex-row justify-center py-16 self-center"}>
+    <FadeInComponent className={"w-1/3 flex flex-row justify-center"} delay={delay}>
+      <div className={"w-full mx-4 space-y-4 flex flex-col items-center border rounded-lg border-gray-300 p-8 h-full"}>
+        <div className={"w-100 h-100 flex flex-row justify-center py-16"}>
           {experience.image}
         </div>
-        <h1 className={"text-6xl self-center"}>{experience.title}</h1>
-        <p className={"text-lg self-center"}>{experience.description}</p>
-        <p className={"text-lg self-center"}>{experience.date}</p>
+        <div className="flex flex-col items-center text-center flex-grow justify-center">
+          <h1 className={"text-4xl"}>{experience.title}</h1>
+          <p className={"text-lg font-bold"}>{experience.description}</p>
+          <p className={"text-lg"}>{experience.date}</p>
+        </div>
         <div className={"w-4/5 flex flex-col space-y-8"}>
           <p className={"text-lg font-bold"}>Achievements: </p>
           <ul className={"list-disc list-inside"}>
-            {experience.achievements.map((achievement) => {
-              return <li className={"text-lg"}>{achievement}</li>
+            {experience.achievements.map((achievement, index) => {
+              return <li key={index} className={"text-lg"}>{achievement}</li>
             })}
           </ul>
-          </div>
+        </div>
       </div>
     </FadeInComponent>
   )
@@ -202,16 +219,18 @@ const ExperienceBox = (experience, delay) => {
 
 const EducationBox = (delay) => {
   return (
-    <FadeInComponent className={"w-full flex flex-col justify-center items-center space-y-16"} delay={delay}>
-      <h1 className={"text-6xl"}>Education</h1>
-      <div className={"w-4/5 flex flex-col space-y-8"}>
-        <div>
-          <h1 className={"text-3xl font-bold"}>California State University, Fullerton</h1>
-          <p className={"text-lg"}>Bachelor of Science in Computer Science</p>
-        </div>
-        <div>
-          <h1 className={"text-3xl font-bold"}>Orange Coast College</h1>
-          <p className={"text-lg"}>Associate of Science in Computer Science</p>
+    <FadeInComponent className={"w-full flex flex-col"} delay={delay}>
+      <div className={"w-full flex flex-col justify-evenly items-center space-y-16  border rounded-lg border-gray-300 p-8 h-full"}>
+        <h1 className={"text-6xl"}>Education</h1>
+        <div className={"flex flex-row justify-evenly w-full"}>
+          <div className="flex flex-col gap-4">
+            <h1 className={"text-3xl font-bold"}>California State University, Fullerton</h1>
+            <p className={"text-lg"}>Bachelor of Science in Computer Science</p>
+          </div>
+          <div className="flex flex-col gap-4">
+            <h1 className={"text-3xl font-bold"}>Orange Coast College</h1>
+            <p className={"text-lg"}>Associate of Science in Computer Science</p>
+          </div>
         </div>
       </div>
     </FadeInComponent>

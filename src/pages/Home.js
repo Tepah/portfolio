@@ -4,6 +4,7 @@ import PageTransition from "../components/PageTransition";
 import {Footer} from "../components/Footer";
 import {motion} from 'framer-motion';
 import heroImage from "../assets/IMG_0697.jpg";
+import HomePageTransition from "../components/HomePageTransition";
 
 
 const Home = () => {
@@ -35,16 +36,18 @@ const Home = () => {
     )
   } else {
     return (
-      <div className="flex flex-col">
-        <BackgroundImage/>
-        <Super/>
-        <DescLayer />
-        <AboutLink/>
-        <ProjectLink/>
-        <SkillsLink/>
-        <ContactLink/>
-        <Footer/>
-      </div>
+      <HomePageTransition>
+        <div className="flex flex-col">
+          <BackgroundImage/>
+          <Super/>
+          <DescLayer />
+          <AboutLink/>
+          <ProjectLink/>
+          <SkillsLink/>
+          <ContactLink/>
+          <Footer/>
+        </div>
+      </HomePageTransition>
     )
   }
 };

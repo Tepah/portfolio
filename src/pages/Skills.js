@@ -28,13 +28,16 @@ const Skills = () => {
             <span className="text-blue-500">Pete</span>'s skills
           </h1>
         </div>
-        <SlideInComponent>
-          {isMobile ? <MobileTechnicalSkillsLayer /> : <TechnicalSkillsLayer />}
-        </SlideInComponent>
-        <SlideInComponent>
-          {isMobile ? <MobileSoftSkillsLayer /> : <SoftSkillsLayer />}
-        </SlideInComponent>
-        <Footer />
+        <div className={"w-full h-[70vh] bg-gray-100"}>
+          <SlideInComponent>
+            {isMobile ? <MobileTechnicalSkillsLayer /> : <TechnicalSkillsLayer />}
+          </SlideInComponent>
+        </div>
+        <div className={"w-full h-[60vh] bg-gray-100"}>
+          <SlideInComponent>
+            {isMobile ? <MobileSoftSkillsLayer /> : <SoftSkillsLayer />}
+          </SlideInComponent>
+        </div>
       </div>
     </SkillsPageTransition>
   );
